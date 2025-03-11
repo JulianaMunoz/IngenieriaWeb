@@ -1,24 +1,26 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-    <div class="container mt-4">
-        <h1 class="text-center">Álbum de Fotos</h1>
-        
-        <div class="row">
-            {% for imagen in imagenes %}
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
-                        <img src="{{ imagen.imagen.url }}" class="card-img-top" alt="{{ imagen.descripcion }}">
-                        <div class="card-body">
-                            <p class="card-text text-center">{{ imagen.descripcion }}</p>
-                        </div>
-                    </div>
+<div class="container mt-4">
+    <h2 class="mb-4">Noticias Recientes</h2>
+    <div class="row">
+        {% for noticia in todas_noticias %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card">
+                {% if noticia.imagen %}
+                <img src="{{ noticia.imagen.url }}" class="card-img-top" alt="{{ noticia.titulo }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ noticia.titulo }}</h5>
+                    <p class="card-text text-muted">Publicado el {{ noticia.fecha|date:"d/m/Y" }} por {{ noticia.autor }}</p>
+                    <p class="card-text">{{ noticia.contenido|truncatewords:20 }}</p>
+                    <a href="{% url 'detalle_noticia' noticia.id %}" class="btn btn-primary">Leer más</a>
                 </div>
-            {% empty %}
-                <div class="col-12">
-                    <p class="text-center text-muted">No hay tareas disponibles.</p>
-                </div>
-            {% endfor %}
+            </div>
         </div>
+        {% empty %}
+        <p class="text-center">No hay noticias disponibles.</p>
+        {% endfor %}
     </div>
+</div>
 {% endblock %}

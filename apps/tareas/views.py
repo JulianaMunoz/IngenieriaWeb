@@ -8,7 +8,7 @@ def index(request):
 
 def lista_tareas(request):
     tareas = Tarea.objects.all()
-    return render(request, 'tareas/lista_tareas.html', {'tareas': tareas})
+    return render(request, 'tareas/index.html', {'tareas': tareas})
 
 def marcar_completada(request, tarea_id):
     tarea = Tarea.objects.get(pk=tarea_id)

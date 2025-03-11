@@ -1,24 +1,41 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-    <div class="container mt-4">
-        <h1 class="text-center">Álbum de Fotos</h1>
-        
-        <div class="row">
-            {% for imagen in imagenes %}
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
-                        <img src="{{ imagen.imagen.url }}" class="card-img-top" alt="{{ imagen.descripcion }}">
-                        <div class="card-body">
-                            <p class="card-text text-center">{{ imagen.descripcion }}</p>
-                        </div>
-                    </div>
-                </div>
+<div class="container mt-4">
+    <h2 class="mb-4">Lista de Tareas</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tarea in tareas %}
+            <tr>
+                <td>{{ tarea.id }}</td>
+                <td>{{ tarea.descripcion }}</td>
+                <td>
+                    {% if tarea.completada %}
+                        <span class="badge badge-success">Completada</span>
+                    {% else %}
+                        <span class="badge badge-warning">Pendiente</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'marcar_completada' tarea.id %}" class="btn btn-sm {% if tarea.completada %}btn-danger{% else %}btn-success{% endif %}">
+                        {% if tarea.completada %}Marcar como Pendiente{% else %}Marcar como Completada{% endif %}
+                    </a>
+                </td>
+            </tr>
             {% empty %}
-                <div class="col-12">
-                    <p class="text-center text-muted">No hay tareas disponibles.</p>
-                </div>
+            <tr>
+                <td colspan="4" class="text-center">No hay tareas registradas</td>
+            </tr>
             {% endfor %}
-        </div>
-    </div>
+        </tbody>
+    </table>
+</div>
 {% endblock %}

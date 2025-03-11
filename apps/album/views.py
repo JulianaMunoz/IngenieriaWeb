@@ -8,4 +8,5 @@ def index(request):
 
 def lista_fotos(request):
     todas_fotos = Foto.objects.all()
+    print(Foto.objects.all())  
     return render(request, 'album/index.html', {'todas_fotos': todas_fotos})

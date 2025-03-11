@@ -1,6 +1,7 @@
 from django.urls import path
-from . import views
+from .views import index, lista_fotos
 
 urlpatterns = [
-    path('', views.index, name='album_index'),
+    path('', index, name='album_index'),
+    path('lista/', lista_fotos, name='lista_fotos'),  
 ]

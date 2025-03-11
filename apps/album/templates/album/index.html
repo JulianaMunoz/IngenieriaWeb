@@ -3,14 +3,15 @@
 {% block content %}
     <div class="container mt-4">
         <h1 class="text-center">Álbum de Fotos</h1>
-        
+
         <div class="row">
             {% for imagen in imagenes %}
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-sm">
-                        <img src="{{ imagen.imagen.url }}" class="card-img-top" alt="{{ imagen.descripcion }}">
-                        <div class="card-body">
-                            <p class="card-text text-center">{{ imagen.descripcion }}</p>
+                        <img src="{{ imagen.imagen.url }}" class="card-img-top" alt="{{ imagen.titulo }}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ imagen.titulo }}</h5>
+                            <p class="card-text">{{ imagen.descripcion }}</p>
                         </div>
                     </div>
                 </div>
