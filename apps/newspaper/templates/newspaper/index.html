@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="text-center">Álbum de Fotos</h1>
+        
+        <div class="row">
+            {% for imagen in imagenes %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <img src="{{ imagen.imagen.url }}" class="card-img-top" alt="{{ imagen.descripcion }}">
+                        <div class="card-body">
+                            <p class="card-text text-center">{{ imagen.descripcion }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-center text-muted">No hay tareas disponibles.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
